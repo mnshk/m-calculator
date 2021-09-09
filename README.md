@@ -1,1 +1,1 @@
-# m-calculator
+# M. Calculator
