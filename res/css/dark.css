@@ -1,0 +1,45 @@
+/*defaults*/
+hr{
+	border-color: #444;
+}
+
+input, select{
+	color:#fff;
+	background-color: #000;
+}
+select{
+	background-color: #29f;
+}
+/*view*/
+.view {
+	background-color: #000;
+	color: #fff;
+}
+
+.view-option{
+	color:#eee;
+	border-color: #222;
+}
+
+.menubar{
+	color:#fff;
+	background-color: #000;
+	border-color: #333;
+}
+
+.menu{
+	border-color: #333;
+}
+
+.output{
+	background-color: #222;
+}
+
+#loading{
+	background-color: #000;
+}
+.tooltip{
+	background-color: #222;
+	border-color:#444;
+	color:#ccc;
+}
