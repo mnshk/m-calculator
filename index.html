@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="res/css/main.css">
+	<link rel="stylesheet" href="" id="theme-stylesheet">
+</head>
+
+<body>
+
+	<!--Splash-->
+	<div class="view no-animation" id="splash">
+		<div class="splash">
+			<img src="res/img/logo.jpg">
+			<br><br>
+			<div>by Munish</div>
+		</div>
+	</div>
+
+	<!--Main-->
+	<div class="view" id="main">
+
+		<!--menu bar-->
+		<div class="menubar">
+			<img id="menu-icon" class="icon right" style="margin-top: 2px; height:auto;" src="res/img/menu.png"
+				onclick="view(['menu','main']);">
+			<h2 style="display: inline-block;">
+				<b style="color:#29f;">M.</b> Calculator
+			</h2>
+			<br>
+		</div>
+		<br><br><br>
+
+		<!--Simple calc-->
+		<div class="tab" id="simple-calc">
+			<h3>Basic Calculator
+				<hr>
+			</h3>
+			Select Operation
+			<select id="simple-calc-operator">
+				<option value="add">Add</option>
+				<option value="sub">Subtract</option>
+				<option value="mul">Multiply</option>
+				<option value="div">Divide</option>
+			</select><br>
+			<input id="simple-calc-x" type="number" placeholder="Value"><br>
+			<input id="simple-calc-y" type="number" placeholder="Value">
+			<p id="simple-calc-output" class="output">
+				Answer:
+			</p>
+			<button onclick="simple_calc()">Calculate</button>
+		</div>
+
+		<!--Number System-->
+		<div class="tab" id="num-sys">
+			<h3>Number System Converter
+				<hr>
+			</h3>
+			<br>
+			<h3>Select Conversion</h3><br>
+			<select id="num-sys-from" onchange="num_sys_type('num-sys-val','num-sys-from')">
+				<option value="2">Binary</option>
+				<option value="8">Octal</option>
+				<option value="10">Decimal</option>
+				<option value="16">Hexadecimal</option>
+			</select><br>
+			<div style="padding-left: 30px;">
+				To
+			</div>
+			<select id="num-sys-to">
+				<option value="2">Binary</option>
+				<option value="8">Octal</option>
+				<option value="10">Decimal</option>
+				<option value="16">Hexadecimal</option>
+			</select><br>
+			<div class="tooltip" id="num-sys-tooltip"></div>
+			<input placeholder="Value" id="num-sys-val"
+				onkeyup="num_sys_syntax('num-sys-val','num-sys-from','num-sys-tooltip','num-sys-btn')" type="number">
+			<p id="num-sys-output" class="output">
+				Answer:
+			</p>
+			<button id="num-sys-btn" onclick="num_sys()">Convert</button>
+		</div>
+
+		<!--Log Calculator-->
+		<div class="tab" id="log">
+			<h3>Log and Antilog
+				<hr>
+			</h3>
+			Select Operation
+			<select id="log-op">
+				<option value="log">Log</option>
+				<option value="alog">Antilog</option>
+			</select><br>
+			<input id="log-x" type="number" placeholder="Value">
+			<p id="log-output" class="output">
+				Answer:
+			</p>
+			<button onclick="clog()">Calculate</button>
+		</div>
+
+		<!--Digital Ops-->
+		<div class="tab" id="d-ops">
+			<h3>Digital Numbers Calculator
+				<hr>
+			</h3>
+			<br>
+			Select Number System<br>
+			<select id="ops-type" onchange="num_sys_type('ops-x','ops-type');num_sys_type('ops-y','ops-type');">
+				<option value="2">Binary</option>
+				<option value="8">Octal</option>
+				<option value="10">Decimal</option>
+				<option value="16">Hexadecimal</option>
+			</select><br>
+			Select Operation<br>
+			<select id="ops-op">
+				<option value="add">Add</option>
+				<option value="sub">Subtract</option>
+				<option value="mul">Multiply</option>
+				<option value="div">Divide</option>
+			</select><br>
+			<div class="tooltip" id="ops-tt-1"></div>
+			<input id="ops-x" type="number" placeholder="Value 1"
+				onkeyup="num_sys_syntax('ops-x','ops-type','ops-tt-1','d-ops-btn')"><br>
+			<div class="tooltip" id="ops-tt-2"></div>
+			<input id="ops-y" type="number" placeholder="Value 2"
+				onkeyup="num_sys_syntax('ops-y','ops-type','ops-tt-2','d-ops-btn')">
+			<p id="ops-out" class="output">
+				Answer:
+			</p>
+			<button id="d-ops-btn" onclick="d_ops()">Calculate</button>
+		</div>
+
+	</div>
+
+	<!--Menu-->
+	<div class="view menu" id="menu">
+		<span class="back-btn forward-btn" onclick="view(['main'])"></span>
+		<img class="icon right" style="animation:.5s fade;" onclick="view(['setting'])" id="setting-icon"
+			src="res/img/setting.png">
+		<br><br>
+		<div class="view-option" onclick="tab(['simple-calc']); view(['main'])">
+			Simple Calculator
+		</div>
+		<div class="view-option" onclick="tab(['num-sys']); view(['main'])">
+			Number System
+		</div>
+		<div class="view-option" onclick="tab(['log']); view(['main'])">
+			Log and Anti-Log
+		</div>
+		<div class="view-option" onclick="tab(['d-ops']); view(['main'])">
+			Digital Numbers Calculator
+		</div>
+	</div>
+
+	<!--Setting-->
+	<div class="view" id="setting">
+		<h2>
+			<span class="back-btn" onclick="view(['main'])"></span>Setting
+			<hr>
+		</h2>
+		<div class="view-option" onclick="slider_change('setting-theme-slider'); setting_change_theme()">
+			Dark Mode
+			<span id="setting-theme-slider" class="slider"></span>
+		</div>
+		<div class="view-option" onclick="view(['setting_about'])">
+			About
+		</div>
+
+	</div>
+
+	<!--Setting about-->
+	<div class="view" id="setting_about">
+		<h2>
+			<span class="back-btn" onclick="view(['setting'])"></span>About
+			<hr>
+		</h2><br>
+		<h2>
+			<b style="color:#29f;">M.</b>
+			Calculator
+		</h2><br>
+		<div>Designed & Built by Munish</div>
+		<div>&copy;2020 Rights are Reserved</div>
+	</div>
+
+	<span id="loading"></span>
+
+	<script id="script" src="res/js/views.js"></script>
+	<script id="script" src="res/js/math.js"></script>
+	<script id="script" src="res/js/main.js"></script>
+
+	<script>
+		var splash_exist = true;
+		var tab_exist = true;
+		var splash_time = 1500;
+		var default_tab = "simple-calc";
+		var splash = true;
+		hide_tooltips();
+		set_sliders();
+	</script>
+</body>
+
+</html>
